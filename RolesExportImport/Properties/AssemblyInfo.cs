@@ -13,11 +13,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RolesExportImport")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A small tool that allows you to export and import roles from a K2 server.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Denallix Corp")]
+[assembly: AssemblyCompany("None.")]
 [assembly: AssemblyProduct("RolesExportImport")]
-[assembly: AssemblyCopyright("Copyright @ Denallix Corp 2008")]
+[assembly: AssemblyCopyright("Ruben d'Arco")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
@@ -59,4 +59,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.2.*")]
