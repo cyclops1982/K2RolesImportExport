@@ -14,10 +14,10 @@ I really would like change you make to be submitted back. Open source can only w
 
 ChangeLog
 =========
-- 0.1
+- 1.0
 Initial version, way back.
 
 
-- 0.2
+- 1.2
 Discovery of K2 servers using the Discovery protocol (fixed by Kenny Cheng).
 
