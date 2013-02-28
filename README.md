@@ -14,10 +14,15 @@ I really would like change you make to be submitted back. Open source can only w
 
 ChangeLog
 =========
-- 1.0
-Initial version, way back.
+* 1.0
+- Initial version, way back.
 
+* 1.2
+- Discovery of K2 servers using the Discovery protocol (fixed by Kenny Cheng).
 
-- 1.2
-Discovery of K2 servers using the Discovery protocol (fixed by Kenny Cheng).
-
+* 1.3
+- Minor updates
+	Better port parsing, if it was even needed.
+	Changed log messages.
+	Added file filter on open dialog.
+- Updated version number to 1.3
