@@ -52,10 +52,12 @@ namespace RolesExportImport
                 }
                 string[] server = selectedServer.Split(':');
 
-                //TODO: add some parsing on the port, etc.s
+                uint port = 0;
+                if (!uint.TryParse(server[1], out port))
+                    throw new ApplicationException("Could not parse port number into uint.");
 
                 SCConnectionStringBuilder conBuilder = new SCConnectionStringBuilder();
-                conBuilder.Port = uint.Parse(server[1]);
+                conBuilder.Port = port;
                 conBuilder.Host = server[0];
                 conBuilder.Integrated = true;
                 conBuilder.IsPrimaryLogin = true;
@@ -74,6 +76,7 @@ namespace RolesExportImport
         public void FileLocationClicked(object sender, EventArgs e)
         {
             FileDialog fd = new OpenFileDialog();
+            fd.Filter = "XML-Files (*.xml)|*.xml|All files (*.*)|*.*";
             fd.CheckFileExists = false;
             fd.ShowDialog();
 
@@ -87,13 +90,11 @@ namespace RolesExportImport
 
         public void ExportClicked(object sender, EventArgs e)
         {
-            WriteLog("exporting");
+            WriteLog("Starting export");
             List<Role> roles = new List<Role>();
             URM.UserRoleManager urmServer = new URM.UserRoleManager();
-            WriteLog("exporting 2");
             using (urmServer.CreateConnection())
             {
-                WriteLog("exporting 3");
                 urmServer.Connection.Open(ConnectionString);
                 WriteLog("Connected to K2 server");
 
@@ -125,12 +126,12 @@ namespace RolesExportImport
 
         public void ImportClicked(object sender, EventArgs e)
         {
-            WriteLog("Reading XML file");
+            WriteLog("Starting import");
             XmlSerializer xmlSer = new XmlSerializer(typeof(List<Role>));
             XmlTextReader reader = new XmlTextReader(txtFileLocation.Text);
             List<Role> roles = (List<Role>)xmlSer.Deserialize(reader);
             reader.Close();
-            WriteLog("Read {0} roles. Starting import.", roles.Count);
+            WriteLog("Read {0} roles", roles.Count);
 
             URM.UserRoleManager urmServer = new URM.UserRoleManager();
             using (urmServer.CreateConnection())
@@ -316,7 +317,7 @@ namespace RolesExportImport
             {
                 cmbServers.Items.Add(server.Replace('|', ':'));
             }
-            WriteLog("Found {0} servers. Select a server.", servers.Count);
+            WriteLog("Found {0} servers. Please select a server.", servers.Count);
 
             SetButtonStatus(ButtonStatus.SelectServer);
         }
